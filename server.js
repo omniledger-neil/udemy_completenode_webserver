@@ -23,6 +23,32 @@ const fs = require('fs');
     e.g. node_modules/,*.log
 
     commit/save a change to your repository with... git commit -m "message for this commit"
+
+now you have a local git repository recording changes to your code
+
+    https://help.github.com/en/articles/connecting-to-github-with-ssh
+    ... will describe generating an SSH key to let github be your online repository
+
+    use 'git bash' instead of windows 'cmd' and navigate to current directory
+
+    ssh-keygen -t rsa -b 4096 -C 'neil@omniledger.co.uk'
+    check with... ls -al ~/.ssh
+    shows you have created... 'id_rsa' (private key) and 'id_rsa.pub' (public key) files
+
+    eval "$(ssh-agent -s)"... shows SSH agent is running e.g. Agent pid 7240
+
+    ssh-add ~/.ssh/id_rsa... adds our key pair to the SSH agent
+
+    connect/create a github identity... user: omniledger-neil, email: neil@omniledger.co.uk, password: usual
+    add contents of your id_rsa.pub file to the ssh key in your github profile (settings)
+
+    ssh -T git@github.com... checks your connection and should result in a 'successfully authenticated' message
+
+    manually create a new repository on github and you will be shown the command to connect to it
+    e.g. git remote add origin https://github.com/omniledger-neil/udemy_completenode_webserver.git
+    
+    the command to push your committed local changes to your remote github repository...
+    git push -u origin master
 */
 
 /*
