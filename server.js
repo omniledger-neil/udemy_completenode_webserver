@@ -8,6 +8,10 @@ const fs = require('fs');
     Install latest version of git from https://www.git-scm.com/download/win
     Read the free book, 'pro-git 2nd edition 2014'
 
+    configure...
+    git config --global user.name "Neil Stackman"
+    git config --global user.email neil@omniledger.co.uk
+
     test with... git --version
     initialise folder with... git init (results in a hidden folder called '.git', the repository)
     check with... git status
@@ -18,7 +22,7 @@ const fs = require('fs');
     remove files that you don't want to check with a file called '.gitignore'
     e.g. node_modules/,*.log
 
-    commit/save a change to your repository with... git commit -m 'message for this commit'
+    commit/save a change to your repository with... git commit -m "message for this commit"
 */
 
 /*
