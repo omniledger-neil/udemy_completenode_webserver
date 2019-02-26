@@ -49,8 +49,14 @@ now you have a local git repository recording changes to your code
     manually create a new repository on github and you will be shown the command to connect to it
     e.g. git remote add origin https://github.com/omniledger-neil/udemy_completenode_webserver.git
     
-    the command to push your committed local changes to your remote github repository...
+    the command to add all 'modified' files to your repository, commit and push to remote
+    git add.
+    git commit -m "message"
+    git push
+
+    the initial command to push your committed local changes to your remote github repository...
     git push -u origin master
+
 */
 
 /*
@@ -69,6 +75,12 @@ now you have a local git repository recording changes to your code
 
     you need to add the default 'start' script to your package.json so that the app does
     not start with 'node server.js' anymore, instead 'npm start' will kick things off
+
+    create app on heroku, and register as a remote location...    heroku create
+    push remotely to the new, heroku, location...                 git push heroku
+
+    we now have a URL we can use,  https://sleepy-atoll-58646.herokuapp.com/
+    ... or we can open the cached url on the terminal with 'heroku open'
 */
 
 /*
@@ -125,7 +137,13 @@ app.get('/about', (req, res) => {
         "pageTitle" : "About Page"
     });
 });
-   
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs',{
+        "pageTitle" : "Projects Page"
+    });
+});
+
 app.get('/help', (req, res) => {
     res.render('help.hbs',{
         "pageTitle" : "Help Page"
