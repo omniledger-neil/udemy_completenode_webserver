@@ -3,6 +3,8 @@ const hbs = require('hbs');
 const app = express();
 const path = require('path');
 const fs = require('fs');
+// or operator will set port 3000 if we don't find a environment variable
+const port = process.env.PORT || 3000;
 
 /*
     Install latest version of git from https://www.git-scm.com/download/win
@@ -39,7 +41,7 @@ now you have a local git repository recording changes to your code
 
     ssh-add ~/.ssh/id_rsa... adds our key pair to the SSH agent
 
-    connect/create a github identity... user: omniledger-neil, email: neil@omniledger.co.uk, password: usual
+    connect/create a github identity... user: omniledger-neil, email: neil@omniledger.co.uk
     add contents of your id_rsa.pub file to the ssh key in your github profile (settings)
 
     ssh -T git@github.com... checks your connection and should result in a 'successfully authenticated' message
@@ -52,9 +54,27 @@ now you have a local git repository recording changes to your code
 */
 
 /*
- By default nodemon only watches changes to js files.
- Don't start with... nodemon server
- Use... nodemon server -e js,hbs
+    Deploying app to the web can be achieved, for free, with heroku...
+    https://dashboard.heroku.com/apps
+
+    Download and install command line tools from...
+    https://devcenter.heroku.com/articles/heroku-cli
+
+    to check installation                   heroku --help
+    to log in to heroku account             heroku login, user:neil@omniledger.co.uk
+    to add your public key to heroku        heroku keys:add
+    to check connection to heroku server    ssh -v git@heroku.com
+
+    deploying to another server means that your port will be a variable, so change your app.listen
+
+    you need to add the default 'start' script to your package.json so that the app does
+    not start with 'node server.js' anymore, instead 'npm start' will kick things off
+*/
+
+/*
+    By default nodemon only watches changes to js files.
+    Don't start with... nodemon server
+    Use... nodemon server -e js,hbs
 */
 
 // choose a templating engine, e.g. hbs (handlebars)...
@@ -117,6 +137,6 @@ app.get('/bad', (req, res) => {
     res.setHeader('HTTP/1.1','404')
 });
 
-app.listen(3000, () => {
-    console.log('Server is available on Port: 3000');
+app.listen(port, () => {
+    console.log(`Server is available on Port: ${port}`);
 });
